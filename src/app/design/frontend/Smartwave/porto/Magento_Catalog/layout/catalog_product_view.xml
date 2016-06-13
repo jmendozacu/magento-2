@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 SW-THEMES. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="2columns-right" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Magento_Catalog::js/jquery.zoom.min.js"/>
+    </head>
+    <body>
+        <referenceContainer name="sidebar.additional">
+            <block class="Smartwave\Porto\Block\Template" name="product_view_custom_block" before="-" template="Magento_Catalog::product/view/custom_block.phtml"/>
+        </referenceContainer>
+        <move element="product.info.stock.sku" destination="product.info.price" after="product.price.final"/>
+        <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
+        <move element="catalog.product.related" destination="sidebar.additional" after="product_view_custom_block"/>
+    </body>
+</page>

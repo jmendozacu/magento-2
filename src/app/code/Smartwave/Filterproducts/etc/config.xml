@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <filterproducts>
+            <featured>
+                <enable>1</enable>
+                <limit>12</limit>
+                <title>Featured Products</title>
+            </featured>
+            <latest>
+                <enable>1</enable>
+                <limit>12</limit>
+                <title>Latest Products</title>
+            </latest>
+        </filterproducts>
+    </default>
+</config>

@@ -1,0 +1,10 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-right" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Smartwave_Filterproducts::css/filterproducts_page.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Smartwave\Filterproducts\Block\LatestList" name="latest_product" template="list.phtml" ifconfig="filterproducts/latest/enable"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,36 @@
+<?php 
+    $_helper = $this->helper('Smartwave\Porto\Helper\Cssconfig');
+    $page_layout = $this->getConfig('porto_settings/general/layout');
+    if($page_layout == "full_width") {
+        $page_layout = "layout-fullwidth";
+    } else if($page_layout == "1170") {
+        $page_layout = "layout-1170";
+    } else if($page_layout == "1280") {
+        $page_layout = "layout-1280";
+    }
+    $boxed = $this->getConfig('porto_settings/general/boxed');
+?>
+<?php //Include Google fonts character subsets (such as extended latin, cyrillic)
+    $d = $this->getConfig('porto_design');
+    $charSubset = "";
+    if (isset($d['font']['char_latin_ext']) && $d['font']['char_latin_ext']==1 )
+        $charSubset .= ',latin-ext';
+    if (isset($d['font']['char_subset']) && $d['font']['char_subset'])
+        $charSubset .= ','.$d['font']['char_subset'];
+    $font_sizes = "%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic";
+?>
+<?php if (isset($d['font']['custom']) && $d['font']['custom'] && $d['font']['font_family'] == 'google'): ?>
+<link rel="stylesheet" href='//fonts.googleapis.com/css?family=<?php echo str_replace(' ', '+', $d['font']['google_font_family']).$font_sizes; echo $charSubset; ?>' type='text/css' />
+<?php else: ?>
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic&amp;v1&amp;subset=latin%2Clatin-ext" type="text/css" media="screen"/>
+<?php endif;?>
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getDesignFile()?>">
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getSettingsFile()?>">
+<script type="text/javascript">
+require([
+    'jquery'
+], function ($) {
+    $("body").addClass("<?php echo $page_layout; ?>");
+    $("body").addClass("<?php echo $boxed; ?>");
+});
+</script>

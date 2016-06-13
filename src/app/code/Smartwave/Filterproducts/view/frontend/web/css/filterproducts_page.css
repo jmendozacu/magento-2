@@ -1,0 +1,13 @@
+.pager {
+    margin-bottom: 40px;
+    padding: 0 10px;
+    text-align: center;
+    display: block;
+    float: left;
+    width: 100%;
+}
+.pager .pages {
+    float: left;
+    display: block;
+    margin-left: 20px;
+}
