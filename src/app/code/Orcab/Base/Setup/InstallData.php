@@ -61,6 +61,14 @@ class InstallData implements InstallDataInterface
      */
     protected $ruleFactory;
 
+
+    /**
+     * Resource config
+     *
+     * @var \Magento\Config\Model\ResourceModel\Config
+     */
+    protected $resourceConfig;
+
     /**
      * Default website
      *
@@ -116,6 +124,7 @@ class InstallData implements InstallDataInterface
      * @var array
      */
     protected $defaultRuleTax = array(
+        'id'                 => 1,
         'code'               => 'TVA France 20%',
         'tax_customer_class' => 3,
         'tax_product_class'  => 2,
@@ -143,7 +152,8 @@ class InstallData implements InstallDataInterface
         \Magento\Store\Model\StoreFactory $storeFactory,
         \Magento\Tax\Model\Calculation\RateFactory $taxRateFactory,
         \Magento\Tax\Api\TaxRuleRepositoryInterface $taxRuleRepository,
-        \Magento\Tax\Api\Data\TaxRuleInterfaceFactory $ruleFactory
+        \Magento\Tax\Api\Data\TaxRuleInterfaceFactory $ruleFactory,
+        \Magento\Config\Model\ResourceModel\Config $resourceConfig
     ) {
         $appState->setAreaCode('adminhtml');
 
@@ -153,6 +163,7 @@ class InstallData implements InstallDataInterface
         $this->taxRateFactory    = $taxRateFactory;
         $this->taxRuleRepository = $taxRuleRepository;
         $this->ruleFactory       = $ruleFactory;
+        $this->resourceConfig    = $resourceConfig;
     }
 
     /**
@@ -191,7 +202,7 @@ class InstallData implements InstallDataInterface
         $rateModel->addData($this->defaultProductTax);
         $rateModel->save();
 
-        $taxRule = $this->ruleFactory->create();
+        $taxRule = $this->ruleFactory->create()->load($this->defaultRuleTax['id']);
         $taxRule->setCode($this->defaultRuleTax['code'])
             ->setTaxRateIds([$rateModel->getId()])
             ->setCustomerTaxClassIds([$this->defaultRuleTax['tax_customer_class']])
@@ -200,5 +211,50 @@ class InstallData implements InstallDataInterface
             ->setCalculateSubtotal($this->defaultRuleTax['calculate_subtotal'])
             ->setPosition($this->defaultRuleTax['position']);
         $this->taxRuleRepository->save($taxRule);
+
+
+        // Define theme
+        $this->resourceConfig->saveConfig('design/theme/theme_id', 4, 'default', 0);
+
+        // Desactive stock
+        $this->resourceConfig->saveConfig('cataloginventory/item_options/manage_stock', 0, 'default', 0);
+
+        // Hide checkout
+        $this->resourceConfig->saveConfig('advanced/modules_disable_output/Magento_Checkout', 1, 'default', 0);
+
+        // Add category limit for menu
+        $this->resourceConfig->saveConfig('catalog/navigation/max_depth', 3, 'default', 0);
+
+        // Display category in product url
+        $this->resourceConfig->saveConfig('catalog/seo/product_use_categories', 1, 'default', 0);
+
+        // State, locale...
+        $this->resourceConfig->saveConfig('general/country/allow', 'FR', 'default', 0);
+        $this->resourceConfig->saveConfig('general/locale/code', 'fr_FR', 'default', 0);
+        $this->resourceConfig->saveConfig('general/locale/timezone', 'Europe/Paris', 'default', 0);
+        $this->resourceConfig->saveConfig('general/locale/weight_unit', 'kgs', 'default', 0);
+        $this->resourceConfig->saveConfig('general/locale/firstday', 1, 'default', 0);
+        $this->resourceConfig->saveConfig('general/locale/weekend', '0,6', 'default', 0);
+        $this->resourceConfig->saveConfig('general/store_information/name', 'ORCAB', 'default', 0);
+        $this->resourceConfig->saveConfig('general/store_information/country_id', 'FR', 'default', 0);
+        $this->resourceConfig->saveConfig('general/store_information/postcode', '85620', 'default', 0);
+        $this->resourceConfig->saveConfig('general/store_information/city', 'Rocheservière', 'default', 0);
+        $this->resourceConfig->saveConfig('general/store_information/street_line1', 'Zone Artisanale Genêts', 'default', 0);
+
+        // Tax, price
+        $this->resourceConfig->saveConfig('tax/defaults/country', 'FR', 'default', 0);
+        $this->resourceConfig->saveConfig('tax/display/type', 2, 'default', 0);
+        $this->resourceConfig->saveConfig('tax/display/shipping', 2, 'default', 0);
+
+        // Design
+        $this->resourceConfig->saveConfig('porto_settings/category/rating_star', 0, 'default', 0);
+        $this->resourceConfig->saveConfig('catalog/frontend/grid_per_page_values', '12,24,36', 'default', 0);
+        $this->resourceConfig->saveConfig('catalog/frontend/grid_per_page', '12', 'default', 0);
+
+
+        // Image
+        $this->resourceConfig->saveConfig('catalog/fields_masks/img', 'https://*/*/*|L400|*', 'default', 0);
+        $this->resourceConfig->saveConfig('catalog/fields_masks/thumb', 'https://*/*/*|L150|*', 'default', 0);
+        $this->resourceConfig->saveConfig('catalog/fields_masks/zoom', 'https://*/*/*|L1200|*', 'default', 0);
     }
 }
