@@ -1,0 +1,39 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+?>
+<ol class="items">
+    <?php foreach ($filterItems as $filterItem): ?>
+        <li class="item">
+            <?php if ($filterItem->getCount() > 0): ?>
+                <?php $checked =  $this->checkedFilter($filterItem) ? ' checked' : ''; ?>
+
+                <a href="<?php echo $block->escapeUrl($filterItem->getUrl()) ?>">
+                    <input type="checkbox" class="am_shopby_filter_item_<?php echo $filterItem->getValue()?>" <?php echo $checked ?> />
+                    <?php echo $filterItem->getLabel() ?>
+                    <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                        <span class="count"><?php echo $filterItem->getCount()?><span class="filter-count-label">
+                            <?php if ($filterItem->getCount() == 1):?> <?php echo __('item')?><?php else:?> <?php echo __('items') ?><?php endif;?></span></span>
+                    <?php endif; ?>
+                </a>
+            <?php else:?>
+                <?php echo $filterItem->getLabel() ?>
+                <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                    <span class="count"><?php echo $filterItem->getCount()?><span class="filter-count-label">
+                        <?php if ($filterItem->getCount() == 1):?><?php echo __('item')?><?php else:?><?php echo __('items') ?><?php endif;?></span></span>
+                <?php endif; ?>
+            <?php endif; ?>
+            <script type="text/x-magento-init">
+            {
+                ".am_shopby_filter_item_<?php echo $filterItem->getValue()?>": {
+                    "amShopbyFilterItemDefault": {}
+                }
+            }
+            </script>
+        </li>
+    <?php endforeach ?>
+</ol>
+

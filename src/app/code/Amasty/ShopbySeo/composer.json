@@ -1,0 +1,20 @@
+{
+    "name": "amasty/shopby-seo",
+    "description": "Improved Navigation by Amasty - SEO sub-module",
+    "require": {
+        "php": "~5.5.0|~5.6.0|~7.0.0",
+        "magento/magento-composer-installer": "*",
+        "amasty/shopby": "1.3.1"
+    },
+    "type": "magento2-module",
+    "version": "1.3.1",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+    "files": [ "registration.php" ],
+        "psr-4": {
+            "Amasty\\ShopbySeo\\": ""
+        }
+    }
+}
