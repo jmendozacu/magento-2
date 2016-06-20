@@ -70,6 +70,16 @@ class InstallData implements InstallDataInterface
     protected $resourceConfig;
 
     /**
+     * @var \Magento\Cms\Model\PageFactory
+     */
+    protected $_pageFactory;
+
+    /**
+     * @var \Magento\Cms\Model\BlockFactory
+     */
+    protected $_blockFactory;
+
+    /**
      * Default website
      *
      * @var array
@@ -142,6 +152,8 @@ class InstallData implements InstallDataInterface
      * @param \Magento\Tax\Model\Calculation\RateFactory    $taxRateFactory
      * @param \Magento\Tax\Api\TaxRuleRepositoryInterface   $taxRuleRepository
      * @param \Magento\Tax\Api\Data\TaxRuleInterfaceFactory $ruleFactory
+     * @param \Magento\Cms\Model\PageFactory                $pageFactory
+     * @param \Magento\Cms\Model\BlockFactory               $blockFactory
      *
      * @return InstallData
      */
@@ -153,7 +165,9 @@ class InstallData implements InstallDataInterface
         \Magento\Tax\Model\Calculation\RateFactory $taxRateFactory,
         \Magento\Tax\Api\TaxRuleRepositoryInterface $taxRuleRepository,
         \Magento\Tax\Api\Data\TaxRuleInterfaceFactory $ruleFactory,
-        \Magento\Config\Model\ResourceModel\Config $resourceConfig
+        \Magento\Config\Model\ResourceModel\Config $resourceConfig,
+        \Magento\Cms\Model\PageFactory $pageFactory,
+        \Magento\Cms\Model\BlockFactory $blockFactory
     ) {
         $appState->setAreaCode('adminhtml');
 
@@ -164,6 +178,8 @@ class InstallData implements InstallDataInterface
         $this->taxRuleRepository = $taxRuleRepository;
         $this->ruleFactory       = $ruleFactory;
         $this->resourceConfig    = $resourceConfig;
+        $this->_pageFactory      = $pageFactory;
+        $this->_blockFactory     = $blockFactory;
     }
 
     /**
@@ -223,10 +239,13 @@ class InstallData implements InstallDataInterface
         $this->resourceConfig->saveConfig('advanced/modules_disable_output/Magento_Checkout', 1, 'default', 0);
 
         // Add category limit for menu
-        $this->resourceConfig->saveConfig('catalog/navigation/max_depth', 3, 'default', 0);
+        $this->resourceConfig->saveConfig('sw_megamenu/general/max_level', 3, 'default', 0);
 
         // Display category in product url
         $this->resourceConfig->saveConfig('catalog/seo/product_use_categories', 1, 'default', 0);
+
+        // Display cookie message
+        $this->resourceConfig->saveConfig('web/cookie/cookie_restriction', 1, 'default', 0);
 
         // State, locale...
         $this->resourceConfig->saveConfig('general/country/allow', 'FR', 'default', 0);
@@ -236,6 +255,12 @@ class InstallData implements InstallDataInterface
         $this->resourceConfig->saveConfig('general/locale/firstday', 1, 'default', 0);
         $this->resourceConfig->saveConfig('general/locale/weekend', '0,6', 'default', 0);
         $this->resourceConfig->saveConfig('general/store_information/name', 'ORCAB', 'default', 0);
+        $this->resourceConfig->saveConfig('general/store_information/phone', '02 51 48 88 72', 'default', 0);
+        $this->resourceConfig->saveConfig('general/store_information/hours', 'Bureaux :
+        Du lundi au jeudi, 8h00 - 12h30 / 13h30 - 18h00
+        Le vendredi, 8h00 - 12h30 / 13h30 - 16h30
+Réception marchandises :
+        Du lundi au vendredi, 7h30 - 15h00', 'default', 0);
         $this->resourceConfig->saveConfig('general/store_information/country_id', 'FR', 'default', 0);
         $this->resourceConfig->saveConfig('general/store_information/postcode', '85620', 'default', 0);
         $this->resourceConfig->saveConfig('general/store_information/city', 'Rocheservière', 'default', 0);
@@ -250,11 +275,71 @@ class InstallData implements InstallDataInterface
         $this->resourceConfig->saveConfig('porto_settings/category/rating_star', 0, 'default', 0);
         $this->resourceConfig->saveConfig('catalog/frontend/grid_per_page_values', '12,24,36', 'default', 0);
         $this->resourceConfig->saveConfig('catalog/frontend/grid_per_page', '12', 'default', 0);
-
+        $this->resourceConfig->saveConfig('design/head/default_title', 'Orcab', 'default', 0);
+        $this->resourceConfig->saveConfig('design/head/default_description', "Les coopératives d\'Achat des Artisans du Bâtiment", 'default', 0);
+        $this->resourceConfig->saveConfig('design/head/default_keywords', 'orcab', 'default', 0);
+        $this->resourceConfig->saveConfig('design/head/shortcut_icon_image', 'default/favicon.ico', 'default', 0);
+        $this->resourceConfig->saveConfig('design/header/welcome', "Les coopératives d\'Achat des Artisans du Bâtiment", 'default', 0);
+        $this->resourceConfig->saveConfig('design/header/logo_src', 'default/logo.png', 'default', 0);
+        $this->resourceConfig->saveConfig('design/header/logo_width', '360', 'default', 0);
+        $this->resourceConfig->saveConfig('design/header/logo_height', '100', 'default', 0);
+        $this->resourceConfig->saveConfig('design/header/logo_alt', 'Orcab', 'default', 0);
+        //$this->resourceConfig->saveConfig('design/footer/default_copyright', '', 'default', 0);
+        $this->resourceConfig->saveConfig('web/default/cms_home_page', 'home', 'default', 0);
+        $this->resourceConfig->saveConfig('porto_design/header/custom', 1, 'default', 0);
+        $this->resourceConfig->saveConfig('porto_design/header/header_menu_bgcolor', 'EEEEEE', 'default', 0);
+        $this->resourceConfig->saveConfig('porto_design/colors/custom', 1, 'default', 0);
+        $this->resourceConfig->saveConfig('porto_design/colors/breadcrumbs_bg_color', '022a5a', 'default', 0);
+        $this->resourceConfig->saveConfig('porto_design/colors/breadcrumbs_links_hover_color', 'a4d73a', 'default', 0);
+        $this->resourceConfig->saveConfig('porto_design/footer/custom', 1, 'default', 0);
+        $this->resourceConfig->saveConfig('porto_design/footer/footer_bottom_bgcolor', 'FFFFFF', 'default', 0);
 
         // Image
         $this->resourceConfig->saveConfig('catalog/fields_masks/img', 'https://*/*/*|L400|*', 'default', 0);
         $this->resourceConfig->saveConfig('catalog/fields_masks/thumb', 'https://*/*/*|L150|*', 'default', 0);
         $this->resourceConfig->saveConfig('catalog/fields_masks/zoom', 'https://*/*/*|L1200|*', 'default', 0);
+
+        // Contact
+        $this->resourceConfig->saveConfig('porto_settings/contacts/address', 'ZA Les Genêts 2, rue Gustave EIFFEL 85620 ROCHESERVIERE', 'default', 0);
+        $this->resourceConfig->saveConfig('porto_settings/contacts/latitude', '46.9472', 'default', 0);
+        $this->resourceConfig->saveConfig('porto_settings/contacts/longitude', '-1.4918', 'default', 0);
+        $this->resourceConfig->saveConfig('porto_settings/contacts/zoom', '15', 'default', 0);
+        $this->resourceConfig->saveConfig('porto_settings/contacts/infoblock', '<div class="row">
+<div class="col-sm-12">
+    <i class="porto-icon-phone"></i>
+    <p>Tel: 02 51 48 88 72</p>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+    <i class="porto-icon-mail-alt"></i>
+    <p>E-mail: porto@portotemplate.com</p>
+    <p>Fax : 02 51 42 90 35</p>
+</div>
+</div>', 'default', 0);
+
+        // Create home page
+        $page = $this->_pageFactory->create()->load('home', 'identifier');
+        $page->setTitle('Orcab')
+            ->setIdentifier('home')
+            ->setIsActive(true)
+            ->setPageLayout('1column')
+            ->setStores(array(0))
+            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit...')
+            ->setContentHeading('')
+            ->save();
+
+        // Create menu before block
+        $page = $this->_blockFactory->create()->load('porto_custom_menu_before', 'identifier');
+        $page->setTitle('Avant-menu')
+            ->setIdentifier('porto_custom_menu_before')
+            ->setIsActive(true)
+            ->setStores(array(0))
+            ->setContent('<ul>
+    <li class="ui-menu-item level0">
+        <a href="{{config path="web/unsecure/base_url"}}" class="level-top"><span>Accueil</span></a>
+    </li>
+</ul>')
+            ->save();
     }
 }

@@ -316,16 +316,16 @@
         },
         {
             "name": "lalbert/magento2-fr_fr",
-            "version": "v1.0.1",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lalbert/magento2-fr_fr.git",
-                "reference": "ecec8c36ef5dd231778baf345fd4637c548ca8e1"
+                "reference": "7ee36d7b8df9852ca00cd8c16a1b5d7ff5ce0ae4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lalbert/magento2-fr_fr/zipball/ecec8c36ef5dd231778baf345fd4637c548ca8e1",
-                "reference": "ecec8c36ef5dd231778baf345fd4637c548ca8e1",
+                "url": "https://api.github.com/repos/lalbert/magento2-fr_fr/zipball/7ee36d7b8df9852ca00cd8c16a1b5d7ff5ce0ae4",
+                "reference": "7ee36d7b8df9852ca00cd8c16a1b5d7ff5ce0ae4",
                 "shasum": ""
             },
             "require": {
@@ -367,7 +367,7 @@
                 "language pack",
                 "magento2"
             ],
-            "time": "2016-05-25 09:21:28"
+            "time": "2016-06-16 15:01:55"
         },
         {
             "name": "magento/composer",

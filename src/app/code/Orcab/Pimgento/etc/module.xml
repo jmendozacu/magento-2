@@ -3,5 +3,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Orcab_Pimgento" setup_version="1.0.0">
+        <module name="Pimgento_Product" />
+        <module name="Pimgento_Category" />
     </module>
 </config>
