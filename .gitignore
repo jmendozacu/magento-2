@@ -58,6 +58,8 @@ atlassian*
 
 /src/vendor
 
+/src/node_modules
+
 !/composer.json
 !/composer.lock
 !/README.md
