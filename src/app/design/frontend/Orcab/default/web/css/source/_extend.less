@@ -14,3 +14,106 @@
     background: rgba(0, 0, 0, 0) radial-gradient(ellipse at center center , #236e89 0%, #0a1c41 99%) repeat scroll 0 0;
   }
 }
+
+/** Menu **/
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .page-header {
+    .sw-megamenu.navigation {
+      li.level0.fullwidth {
+        div.level0.submenu {
+          height: 600px;
+        }
+        .submenu {
+          .subchildmenu {
+            li.level1 {
+              position: static;
+
+              & > a {
+                // level 1
+                width: 20%;
+                background-color: @color-orcab-gray;
+                margin: 1px;
+
+                &:hover {
+                  background-color: @color-white;
+                }
+              }
+              &:hover {
+                ul.subchildmenu {
+                  display: block;
+                }
+              }
+
+              ul.subchildmenu {
+                // level 2
+                display: none;
+                position: absolute;
+                width: 78%;
+                background-color: @color-white;
+                z-index: 10;
+                top: 0;
+                left: 21%;
+                padding: 0;
+
+                a {
+                  background-color: @color-white;
+                }
+                li.level2 {
+                  float: left;
+                  width: 25%;
+
+                  & > a {
+                    color: @color-orcab-blue;
+                  }
+
+                  ul.subchildmenu {
+                    // level 3
+                    position: relative;
+                    left: 0;
+                  }
+                }
+              }
+              &:first-child {
+                ul.subchildmenu {
+                  // first level 2
+                  display: block;
+                  li.level2 {
+                    ul.subchildmenu {
+                      display: block;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*.loop-top(@i) when (@i < 20) {
+  &:nth-child(@{i}+1) > ul {
+    top:(-25*@i)px;
+  }
+  .loop-top((@i+1));
+}*/
+
+
+/** Product image (review, grid, list...) **/
+.products,
+.products-grid {
+  .product-image-photo {
+    max-height: 150px;
+    min-height: 150px;
+    width: auto;
+  }
+}
+
+
+/** view page **/
+.fotorama {
+  .fotorama__stage {
+    border-right-width: 2px;
+  }
+}

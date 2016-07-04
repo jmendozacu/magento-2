@@ -239,7 +239,7 @@ class InstallData implements InstallDataInterface
         $this->resourceConfig->saveConfig('advanced/modules_disable_output/Magento_Checkout', 1, 'default', 0);
 
         // Add category limit for menu
-        $this->resourceConfig->saveConfig('sw_megamenu/general/max_level', 3, 'default', 0);
+        $this->resourceConfig->saveConfig('sw_megamenu/general/max_level', 4, 'default', 0);
 
         // Display category in product url
         $this->resourceConfig->saveConfig('catalog/seo/product_use_categories', 1, 'default', 0);
