@@ -93,3 +93,8 @@
 .porto-icon-zoom-in { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf85a;&nbsp;'); }
 .porto-icon-zoom-out { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf85b;&nbsp;'); }
 .porto-icon-chat { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf860;&nbsp;'); }
+.porto-icon-folder { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf861;&nbsp;'); }
+.porto-icon-folder-open { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf862;&nbsp;'); }
+.porto-icon-tag { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf863;&nbsp;'); }
+.porto-icon-tags { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf864;&nbsp;'); }
+.porto-icon-calendar { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf865;&nbsp;'); }

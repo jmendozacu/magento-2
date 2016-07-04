@@ -8,7 +8,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <tab id="smartwave_porto" translate="label" sortOrder="50">
-            <label>Porto 2.2.0</label>
+            <label>Porto 2.3.1.1</label>
         </tab>
         <section id="porto_settings" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Porto - Settings Panel</label>
@@ -54,10 +54,17 @@
                     <label>Disable Border Radius</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <!--<field id="border_radius" translate="label comment" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Disable All Border Radius</label>
+                <field id="show_site_notice" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Site Notice</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>-->
+                    <comment><![CDATA[Show Notice custom block above of the header.]]></comment>
+                </field>
+                <field id="custom_notice_block" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Notice Block ID</label>
+                    <depends>
+                        <field id="show_site_notice">1</field>
+                    </depends>
+                </field>
             </group>
             <group id="header" translate="label" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Header</label>
@@ -67,6 +74,54 @@
                 </field>
                 <field id="static_block" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Static Block ID</label>
+                </field>
+                <field id="toggle_text" translate="label comment" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Toggle Text for Type 8</label>
+                    <depends>
+                        <field id="header_type">8</field>
+                    </depends>
+                </field>
+                <field id="static_block_8" translate="label comment" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block ID for Type 8</label>
+                    <depends>
+                        <field id="header_type">8</field>
+                    </depends>
+                </field>
+                <field id="sticky_header" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sticky Header</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="sticky_header_logo" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Logo Image in Sticky Header</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="sticky_header">1</field>
+                    </depends>
+                </field>
+                <field id="sticky_header_logo_src" translate="label" type="image" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Logo Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG, SVG.</comment>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Image\Stickylogo</backend_model>
+                    <base_url type="media" scope_info="1">porto/sticky_logo</base_url>
+                    <depends>
+                        <field id="sticky_header">1</field>
+                        <field id="sticky_header_logo">1</field>
+                    </depends>
+                </field>
+                <field id="mobile_sticky_header" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sticky Header on Mobile</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="sticky_header">1</field>
+                    </depends>
+                </field>
+                <field id="currency_short" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Only Short Currency Code in Currency Switcher</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="language_flag" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Flag Images in Language Switcher</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
             <group id="footer" translate="label" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -409,6 +464,10 @@
                     <label>Products Grid Columns</label>
                     <source_model>Smartwave\Porto\Model\Config\Settings\Category\Columns</source_model>
                 </field>
+                <field id="xs_one_column" translate="label comment" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>One Column of Products Grid on Phone Devices</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
                 <field id="flex_grid" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Flex Grid</label>
                     <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
@@ -441,10 +500,116 @@
                 <field id="side_custom_block" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Static Block Id for Sidebar Custom Block</label>
                 </field>
+                <field id="prev_next" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Prev/Next Product Links</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="prev_text" translate="label comment" type="text" sortOrder="113" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Previous Link Text</label>
+                </field>
+                <field id="next_text" translate="label comment" type="text" sortOrder="114" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Next Link Text</label>
+                </field>
                 <!--<field id="page_layout" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Page Layout</label>
                     <source_model>Smartwave\Porto\Model\Config\Settings\Page\Layout</source_model>
                 </field>-->
+                <field id="enable_addtocart_sticky" translate="label comment" type="select" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Addtocart Sticky</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tab_style" translate="label comment" type="select" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Tabs Style</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Product\Tabstyle</source_model>
+                </field>
+                <field id="move_tab" translate="label comment" type="select" sortOrder="350" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Move Product Tabs at the Right of Product Image</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="custom_tabs_heading" translate="label comment" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Custom Tabs</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="custom_cms_tabs" translate="label" sortOrder="410" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Custom Static Block Tabs</label>
+                    <frontend_model>Smartwave\Porto\Block\Adminhtml\Form\Field\Customcmstabs</frontend_model>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Customcmstabs</backend_model>
+                </field>
+                <field id="custom_attr_tabs" translate="label" sortOrder="420" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Custom Attribute Tabs</label>
+                    <frontend_model>Smartwave\Porto\Block\Adminhtml\Form\Field\Customattrtabs</frontend_model>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Customattrtabs</backend_model>
+                </field>
+            </group>
+            <group id="product_label" translate="label" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Label</label>
+                <field id="new_label" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show "New" Label</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="new_label_text" translate="label comment" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"New" Label Text</label>
+                    <depends>
+                        <field id="new_label">1</field>
+                    </depends>
+                </field>
+                <field id="sale_label" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show "Sale" Label</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sale_label_percent" translate="label comment" type="select" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show "Sale" Label with Discount Percent</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="sale_label">1</field>
+                    </depends>
+                </field>
+                <field id="sale_label_text" translate="label comment" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Sale" Label Text</label>
+                    <depends>
+                        <field id="sale_label">1</field>
+                        <field id="sale_label_percent">0</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="newsletter" translate="label" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Newsletter Popup</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Newsletter\Enable</source_model>
+                </field>
+                <field id="delay" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Delay(miliseconds)</label>
+                </field>
+                <field id="logo_src" translate="label" type="image" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Logo Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG, SVG.</comment>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Image\Newsletterlogo</backend_model>
+                    <base_url type="media" scope_info="1">porto/newsletter/logo</base_url>
+                </field>
+                <field id="content" translate="label comment" type="textarea" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Content Text</label>
+                </field>
+                <field id="width" translate="label comment" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Width</label>
+                </field>
+                <field id="height" translate="label comment" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Height</label>
+                </field>
+                <field id="bg_color" translate="label comment" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Backgroud Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="bg_image" translate="label" type="image" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Background Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Image\Newsletterbg</backend_model>
+                    <base_url type="media" scope_info="1">porto/newsletter/background</base_url>
+                </field>
+                <field id="custom_style" translate="label comment" type="textarea" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Style</label>
+                </field>
             </group>
             <group id="contacts" translate="label" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Contact Us</label>
@@ -599,6 +764,48 @@
                     <button_label>Demo 11</button_label>
                     <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
                     <attribute type="demo_version">demo11</attribute>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
+                </field>
+                <field id="import_demo12" translate="button_label" sortOrder="312" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <button_label>Demo 12</button_label>
+                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
+                    <attribute type="demo_version">demo12</attribute>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
+                </field>
+                <field id="import_demo13" translate="button_label" sortOrder="313" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <button_label>Demo 13</button_label>
+                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
+                    <attribute type="demo_version">demo13</attribute>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
+                </field>
+                <field id="import_demo14" translate="button_label" sortOrder="314" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <button_label>Demo 14</button_label>
+                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
+                    <attribute type="demo_version">demo14</attribute>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
+                </field>
+                <field id="import_demo15" translate="button_label" sortOrder="315" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <button_label>Demo 15</button_label>
+                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
+                    <attribute type="demo_version">demo15</attribute>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
+                </field>
+                <field id="import_demo16" translate="button_label" sortOrder="316" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <button_label>Demo 16</button_label>
+                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
+                    <attribute type="demo_version">demo16</attribute>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
+                </field>
+                <field id="import_demo17" translate="button_label" sortOrder="317" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <button_label>Demo 17</button_label>
+                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
+                    <attribute type="demo_version">demo17</attribute>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
+                </field>
+                <field id="import_demo18" translate="button_label" sortOrder="318" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <button_label>Demo 18</button_label>
+                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
+                    <attribute type="demo_version">demo18</attribute>
                     <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
                 </field>
             </group>
@@ -814,6 +1021,45 @@
                 </field>
                 <field id="breadcrumbs_links_hover_color" translate="label comment" type="text" sortOrder="640" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Links Hover Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="product_label_heading" translate="label comment" sortOrder="700" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Labels</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="sale_bg_color" translate="label comment" type="text" sortOrder="710" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Sale" Label Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="sale_font_color" translate="label comment" type="text" sortOrder="720" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Sale" Label Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="new_bg_color" translate="label comment" type="text" sortOrder="730" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"New" Label Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="new_font_color" translate="label comment" type="text" sortOrder="740" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"New" Label Font Color</label>
                     <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
                     <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
                     <depends>

@@ -46,7 +46,7 @@
                 $(this).css("right","auto");
             });
         });
-        $(".nav-toggle").click(function(e){
+        $(".nav-toggle").off('click').on('click',function(e){
             if(!$("html").hasClass("nav-open")) {
                 $("html").addClass("nav-before-open");
                 setTimeout(function(){

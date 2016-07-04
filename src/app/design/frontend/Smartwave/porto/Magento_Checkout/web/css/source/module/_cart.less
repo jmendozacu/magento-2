@@ -201,7 +201,6 @@
                     color: @theme-color;
                 }
                 &.qty {
-                    padding: @indent__base 11px @indent__s;
                     text-align: center;
                     .label {
                         &:extend(.abs-visually-hidden all);
@@ -209,6 +208,9 @@
                     .input-text {
                         text-align: center;
                         width: 45px;
+                    }
+                    .field.qty {
+                        min-width: 67px;
                     }
                 }
                 > .price {

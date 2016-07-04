@@ -82,3 +82,8 @@
 .porto-icon-zoom-in:before { content: '\f85a'; } /* '' */
 .porto-icon-zoom-out:before { content: '\f85b'; } /* '' */
 .porto-icon-chat:before { content: '\f860'; } /* '' */
+.porto-icon-folder:before { content: '\f861'; } /* '' */
+.porto-icon-folder-open:before { content: '\f862'; } /* '' */
+.porto-icon-tag:before { content: '\f863'; } /* '' */
+.porto-icon-tags:before { content: '\f864'; } /* '' */
+.porto-icon-calendar:before { content: '\f865'; } /* '' */

@@ -1,5 +1,6 @@
 <?php 
     $_helper = $this->helper('Smartwave\Porto\Helper\Cssconfig');
+    $porto_helper = $this->helper('Smartwave\Porto\Helper\Data');
     $page_layout = $this->getConfig('porto_settings/general/layout');
     if($page_layout == "full_width") {
         $page_layout = "layout-fullwidth";
@@ -32,5 +33,73 @@ require([
 ], function ($) {
     $("body").addClass("<?php echo $page_layout; ?>");
     $("body").addClass("<?php echo $boxed; ?>");
+<?php if ($this->getConfig('porto_settings/header/mobile_sticky_header')): ?>
+    $("body").addClass("mobile-sticky");
+<?php endif; ?>
+<?php if ($this->getConfig('porto_settings/header/header_type') == "10"): ?>
+    $("body").addClass("side-header");
+<?php endif; ?>
+    $(document).ready(function(){
+        $(".drop-menu > a").off("click").on("click", function(){
+            if($(this).parent().children(".nav-sections").hasClass("visible"))
+                $(this).parent().children(".nav-sections").removeClass("visible");
+            else
+                $(this).parent().children(".nav-sections").addClass("visible")
+        });
+    });
+<?php if ($this->getConfig('porto_settings/header/sticky_header')): ?>
+    var scrolled = false;
+    $(window).scroll(function(){
+        if(!$('.page-header').hasClass('type10')) {
+            if($(window).width()>=768){
+                if(140<$(window).scrollTop() && !scrolled){
+                    $('.page-header').addClass("sticky-header");
+                    scrolled = true;
+                    $('.page-header .minicart-wrapper').after('<div class="minicart-place hide"></div>');
+                    var minicart = $('.page-header .minicart-wrapper').detach();
+                    if($(".page-header").hasClass("type8"))
+                        $('.page-header .menu-wrapper').append(minicart);
+                    else
+                        $('.page-header .navigation').append(minicart);
+                    <?php if ($this->getConfig('porto_settings/header/sticky_header_logo')): ?>
+                    var logo_image = $('<div>').append($('.page-header .header > .logo').clone()).html();
+                    if($(".page-header").hasClass("type8"))
+                        $('.page-header .menu-wrapper').prepend('<div class="sticky-logo">'+logo_image+'</div>');
+                    else
+                        $('.page-header .navigation').prepend('<div class="sticky-logo">'+logo_image+'</div>');
+                    <?php
+                    if($logo_src = $this->getConfig('porto_settings/header/sticky_header_logo_src')){
+                        $folderName = \Smartwave\Porto\Model\Config\Backend\Image\Stickylogo::UPLOAD_DIR;
+                        $path = $folderName . '/' . $logo_src;
+                        $imageUrl = $porto_helper->getBaseUrl() . $path;
+                    ?>
+                    $(".sticky-logo img").attr("src","<?php echo $imageUrl; ?>");
+                    <?php
+                    }
+                    ?>
+                    <?php endif; ?>
+                }
+                if(140>=$(window).scrollTop() && scrolled){
+                    $('.page-header').removeClass("sticky-header");
+                    scrolled = false;
+                    var minicart;
+                    if($(".page-header").hasClass("type8"))
+                        minicart = $('.page-header .menu-wrapper .minicart-wrapper').detach();
+                    else
+                        minicart = $('.page-header .navigation .minicart-wrapper').detach();
+                    $('.minicart-place').after(minicart);
+                    $('.minicart-place').remove();
+                    $('.page-header .minicart-wrapper-moved').addClass("minicart-wrapper").removeClass("minicart-wrapper-moved").removeClass("hide");
+                    <?php if ($this->getConfig('porto_settings/header/sticky_header_logo')): ?>
+                    if($(".page-header").hasClass("type8"))
+                        $('.page-header .menu-wrapper > .sticky-logo').remove();
+                    else
+                        $('.page-header .navigation > .sticky-logo').remove();
+                    <?php endif; ?>
+                }
+            }
+        }
+    });
+<?php endif; ?>
 });
 </script>

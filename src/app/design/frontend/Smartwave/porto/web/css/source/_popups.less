@@ -28,19 +28,18 @@
                     top: 0;
                     width: 40px;
                     z-index: 1001;
-                    ._lib-popup-button-close-icon(
-                    @popup-button-close__icon,
-                    @popup-icon-font__content,
-                    @popup-icon-font,
-                    @popup-icon-font__size,
-                    @popup-icon-font__line-height,
-                    @popup-icon-font__color,
-                    @popup-icon-font__color-hover,
-                    @popup-icon-font__color-active,
-                    @popup-icon-font__margin,
-                    @popup-icon-font__vertical-align,
-                    @popup-icon-font__position,
-                    @popup-icon-font__text-hide
+                    .lib-button-icon(
+                        @_icon-font-content: @popup-icon-font__content,
+                        @_icon-font:@popup-icon-font,
+                        @_icon-font-size: @popup-icon-font__size,
+                        @_icon-font-line-height: @popup-icon-font__line-height,
+                        @_icon-font-color: @popup-icon-font__color,
+                        @_icon-font-color-hover: @popup-icon-font__color-hover,
+                        @_icon-font-color-active: popup-icon-font__color-active,
+                        @_icon-font-margin: @popup-icon-font__margin,
+                        @_icon-font-vertical-align: @popup-icon-font__vertical-align,
+                        @_icon-font-position: @popup-icon-font__position,
+                        @_icon-font-text-hide: @popup-icon-font__text-hide
                     );
                     ._lib-popup-button-close-reset(
                     @popup-button-close__reset

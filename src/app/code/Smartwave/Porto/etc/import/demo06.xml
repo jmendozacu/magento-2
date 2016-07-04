@@ -11,15 +11,24 @@
             <enabled>hidden</enabled>
         </wysiwyg>
     </cms>
+	<design>
+		<header>
+			<logo_width></logo_width>
+			<logo_height></logo_height>
+			<logo_src>default/logo_orange.png</logo_src>
+		</header>
+	</design>
     <porto_settings>
         <general>
             <boxed>wide</boxed>
             <layout>1170</layout>
             <disable_border_radius>1</disable_border_radius>
+            <show_site_notice>0</show_site_notice>
         </general>
         <header>
             <header_type>5</header_type>
             <static_block>porto_custom_block_for_header</static_block>
+            <sticky_header_logo></sticky_header_logo>
         </header>
         <footer>
             <footer_top>0</footer_top>
@@ -55,7 +64,7 @@
             <footer_middle_2_column_4_size>3</footer_middle_2_column_4_size>
             <footer_bottom>1</footer_bottom>
             <footer_store_switcher>0</footer_store_switcher>
-            <footer_logo_src>default/logo_footer.png</footer_logo_src>
+            <footer_logo_src>default/logo_footer_light_black.png</footer_logo_src>
             <footer_bottom_copyrights><![CDATA[&copy;Copyright 2016 by SW-THEMES. All Rights Reserved.]]></footer_bottom_copyrights>
             <footer_bottom_custom_1>porto_footer_bottom_custom_block</footer_bottom_custom_1>
             <footer_bottom_custom_2></footer_bottom_custom_2>
@@ -81,6 +90,9 @@
             <product_image_size>6</product_image_size>
             <side_custom_block>porto_product_side_custom_block</side_custom_block>
         </product>
+		<newsletter>
+			<logo_src>default/logo_orange.png</logo_src>
+		</newsletter>
         <contacts>
             <enable>1</enable>
             <full_width>0</full_width>
@@ -188,6 +200,10 @@
             <breadcrumbs_color></breadcrumbs_color>
             <breadcrumbs_links_color></breadcrumbs_links_color>
             <breadcrumbs_links_hover_color></breadcrumbs_links_hover_color>
+            <sale_bg_color></sale_bg_color>
+            <sale_font_color></sale_font_color>
+            <new_bg_color></new_bg_color>
+            <new_font_color></new_font_color>
         </colors>
         <header>
             <custom>1</custom>

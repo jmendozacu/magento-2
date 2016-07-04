@@ -13,10 +13,12 @@
         <css src="bootstrap/css/bootstrap-theme.css" />
         <css src="owl.carousel/assets/owl.carousel.css" />
         <css src="css/animate.css" />
+        <css src="fancybox/css/jquery.fancybox.css" />
         <css src="icon-fonts/css/porto-icons-codes.css" />
         <css src="icon-fonts/css/animation.css" />
         <css src="css/custom.css" />
         <script src="jquery.js" />
         <script src="bootstrap/js/bootstrap.min.js" />
+        <script src="fancybox/js/jquery.fancybox.js" />
     </head>
 </page>

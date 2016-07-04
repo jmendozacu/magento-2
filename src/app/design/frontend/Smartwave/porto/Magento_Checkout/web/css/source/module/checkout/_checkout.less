@@ -60,7 +60,7 @@
         .nav-sections,
         .nav-toggle,
         .header.panel {
-            display: none;
+            
         }
         .logo {
             margin-left: 0;
@@ -84,7 +84,16 @@
         }
     }
 }
-
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .checkout-index-index {
+        .page-header .minicart-wrapper {
+            display: none;
+        }
+    }
+    .page-header.type5 .block-search .label {
+        margin-right: 0;
+    }
+}
 //
 //  Desktop
 //  _____________________________________________

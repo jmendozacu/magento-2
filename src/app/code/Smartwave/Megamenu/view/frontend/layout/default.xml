@@ -8,7 +8,7 @@
     <body>
         <referenceBlock name="catalog.topnav" remove="true"/>
         <referenceContainer name="page.top">
-            <block class="Smartwave\Megamenu\Block\Topmenu" name="sw.topnav" template="Smartwave_Megamenu::topmenu.phtml" ttl="3600" before="-"/>
+            <block class="Smartwave\Megamenu\Block\Topmenu" name="sw.topnav" template="Smartwave_Megamenu::topmenu.phtml" before="-"/>
         </referenceContainer>
     </body>
 </page>

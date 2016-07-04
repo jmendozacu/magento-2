@@ -4,10 +4,13 @@
         <porto_settings>
             <general>
                 <boxed>wide</boxed>
+                <custom_notice_block>porto_custom_notice</custom_notice_block>
             </general>
             <header>
                 <header_type>1</header_type>
                 <static_block>porto_custom_block_for_header</static_block>
+                <toggle_text><![CDATA[<em class="porto-icon-menu"></em> SHOP BY CATEGORY]]></toggle_text>
+                <static_block_8>porto_custom_block_type_8</static_block_8>
             </header>
             <footer>
                 <footer_newsletter_title>Be the First to Know</footer_newsletter_title>
@@ -64,18 +67,39 @@
                 <category_description>main_column</category_description>
                 <side_custom_block>porto_category_side_custom_block</side_custom_block>
             </category>
+            <category_grid>
+                <columns>4</columns>
+                <move_actions>0</move_actions>
+            </category_grid>
             <product>
                 <!--<aspect_ratio>0</aspect_ratio>
                 <ratio_width>600</ratio_width>
                 <ratio_height>800</ratio_height>-->
                 <product_image_size>6</product_image_size>
                 <side_custom_block>porto_product_side_custom_block</side_custom_block>
+                <prev_next>1</prev_next>
+                <prev_text><![CDATA[<em class="porto-icon-left-open"></em>]]></prev_text>
+                <next_text><![CDATA[<em class="porto-icon-right-open"></em>]]></next_text>
                 <!--<page_layout>two_column_right</page_layout>-->
             </product>
-            <category_grid>
-                <columns>4</columns>
-                <move_actions>0</move_actions>
-            </category_grid>
+            <product_label>
+                <new_label>1</new_label>
+                <new_label_text>NEW</new_label_text>
+                <sale_label>1</sale_label>
+                <sale_label_percent>1</sale_label_percent>
+                <sale_label_text>SALE</sale_label_text>
+            </product_label>
+            <newsletter>
+                <enable>1</enable>
+                <delay>5000</delay>
+                <logo_src>default/logo.png</logo_src>
+                <content><![CDATA[<h2>BE THE FIRST TO KNOW</h2><p>Subscribe to the Porto eCommerce newsletter to receive timely updates from your favorite products.</p>]]></content>
+                <width>700px</width>
+                <height>324px</height>
+                <bg_color></bg_color>
+                <bg_image></bg_image>
+                <custom_style><![CDATA[]]></custom_style>
+            </newsletter>
             <contacts>
                 <enable>1</enable>
                 <full_width>0</full_width>

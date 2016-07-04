@@ -11,15 +11,24 @@
             <enabled>hidden</enabled>
         </wysiwyg>
     </cms>
+	<design>
+		<header>
+			<logo_width></logo_width>
+			<logo_height></logo_height>
+			<logo_src>default/logo_white_plus.png</logo_src>
+		</header>
+	</design>
     <porto_settings>
         <general>
             <boxed>wide</boxed>
             <layout>full_width</layout>
             <disable_border_radius>0</disable_border_radius>
+            <show_site_notice>0</show_site_notice>
         </general>
         <header>
             <header_type>4</header_type>
             <static_block>porto_custom_block_for_header</static_block>
+            <sticky_header_logo></sticky_header_logo>
         </header>
         <footer>
             <footer_top>1</footer_top>
@@ -81,6 +90,9 @@
             <product_image_size>6</product_image_size>
             <side_custom_block>porto_product_side_custom_block</side_custom_block>
         </product>
+		<newsletter>
+			<logo_src>default/logo.png</logo_src>
+		</newsletter>
         <contacts>
             <enable>1</enable>
             <full_width>0</full_width>
@@ -165,6 +177,10 @@
             <breadcrumbs_color></breadcrumbs_color>
             <breadcrumbs_links_color></breadcrumbs_links_color>
             <breadcrumbs_links_hover_color></breadcrumbs_links_hover_color>
+            <sale_bg_color></sale_bg_color>
+            <sale_font_color></sale_font_color>
+            <new_bg_color></new_bg_color>
+            <new_font_color></new_font_color>
         </colors>
         <header>
             <custom>1</custom>

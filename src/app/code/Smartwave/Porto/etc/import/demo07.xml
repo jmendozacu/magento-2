@@ -11,15 +11,24 @@
             <enabled>hidden</enabled>
         </wysiwyg>
     </cms>
+	<design>
+		<header>
+			<logo_width></logo_width>
+			<logo_height></logo_height>
+			<logo_src></logo_src>
+		</header>
+	</design>
     <porto_settings>
         <general>
             <boxed>wide</boxed>
             <layout>1170</layout>
             <disable_border_radius>1</disable_border_radius>
+            <show_site_notice>0</show_site_notice>
         </general>
         <header>
             <header_type>1</header_type>
             <static_block>porto_custom_block_for_header</static_block>
+            <sticky_header_logo>default/logo_white.png</sticky_header_logo>
         </header>
         <footer>
             <footer_top>0</footer_top>
@@ -55,7 +64,7 @@
             <footer_middle_2_column_4_size>3</footer_middle_2_column_4_size>
             <footer_bottom>1</footer_bottom>
             <footer_store_switcher>0</footer_store_switcher>
-            <footer_logo_src>default/logo_footer.png</footer_logo_src>
+            <footer_logo_src>default/logo_footer_blue.png</footer_logo_src>
             <footer_bottom_copyrights><![CDATA[&copy;Copyright 2016 by SW-THEMES. All Rights Reserved.]]></footer_bottom_copyrights>
             <footer_bottom_custom_1>porto_footer_bottom_custom_block</footer_bottom_custom_1>
             <footer_bottom_custom_2></footer_bottom_custom_2>
@@ -81,6 +90,9 @@
             <product_image_size>6</product_image_size>
             <side_custom_block>porto_product_side_custom_block</side_custom_block>
         </product>
+		<newsletter>
+			<logo_src>default/logo.png</logo_src>
+		</newsletter>
         <contacts>
             <enable>1</enable>
             <full_width>0</full_width>
@@ -165,6 +177,37 @@
     height: 34px;
     line-height: 34px;
     border: 1px solid #ccc;
+}
+.product-item-photo {
+    padding: 0;
+}
+@media (min-width: 768px) {
+    header.page-header.type1.sticky-header .nav-sections {
+        background-color: #08c;
+    }
+    header.page-header.type1.sticky-header .minicart-wrapper .action.showcart:before {
+        color: #fff;
+    }
+    .page-header.type1 .block-search .action.search {
+        height: 34px;
+        line-height: 34px;
+        width: 34px;
+        padding: 0;
+    }
+    .page-header.type1 .block-search input {
+        height: 34px;
+    }
+}
+@media (min-width: 1200px) {
+	header.page-header.sticky-header.type1 .nav-sections {
+		background-color: #08c;
+	}
+	header.page-header.sticky-header.type1 .minicart-wrapper .action.showcart .counter.qty {
+		color: #000;
+	}
+	header.page-header.sticky-header.type1 .minicart-wrapper .action.showcart:before {
+		color: #fff;
+	}
 }]]></custom_style>
             <custom_style_2><![CDATA[]]></custom_style_2>
         </custom_settings>
@@ -199,6 +242,10 @@
             <breadcrumbs_color>777777</breadcrumbs_color>
             <breadcrumbs_links_color>0088CC</breadcrumbs_links_color>
             <breadcrumbs_links_hover_color>0088CC</breadcrumbs_links_hover_color>
+            <sale_bg_color></sale_bg_color>
+            <sale_font_color></sale_font_color>
+            <new_bg_color></new_bg_color>
+            <new_font_color></new_font_color>
         </colors>
         <header>
             <custom>1</custom>
@@ -254,7 +301,7 @@
         <page>
             <custom>1</custom>
             <page_bgcolor>E6E6E3</page_bgcolor>
-            <page_bg_image>stores/13/page.png</page_bg_image>
+            <page_bg_image>default/page.png</page_bg_image>
             <page_custom_style><![CDATA[background-position: top center;
 background-repeat: repeat-x;]]></page_custom_style>
         </page>

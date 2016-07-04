@@ -14,8 +14,11 @@
        data-bind="scope: 'minicart_content'">
         <span class="text"><?php echo __('My Cart'); ?></span>
         <span class="counter qty empty"
-              data-bind="css: { empty: cart().summary_count == 0 }, blockLoader: isLoading">
-            <span class="counter-number"><!-- ko text: cart().summary_count --><!-- /ko --></span>
+              data-bind="css: { empty: !cart().summary_count }, blockLoader: isLoading">
+            <span class="counter-number">
+            <!-- ko if: cart().summary_count --><!-- ko text: cart().summary_count --><!-- /ko --><!-- /ko -->
+            <!-- ko ifnot: cart().summary_count -->0<!-- /ko -->
+            </span>
             <span class="counter-label">
                 <!-- ko i18n: 'items' --><!-- /ko -->
             </span>
