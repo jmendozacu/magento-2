@@ -21,7 +21,7 @@
     .sw-megamenu.navigation {
       li.level0.fullwidth {
         div.level0.submenu {
-          height: 600px;
+          height: 650px;
         }
         .submenu {
           .subchildmenu {
@@ -92,24 +92,29 @@
   }
 }
 
-/*.loop-top(@i) when (@i < 20) {
-  &:nth-child(@{i}+1) > ul {
-    top:(-25*@i)px;
-  }
-  .loop-top((@i+1));
-}*/
-
-
 /** Product image (review, grid, list...) **/
 .products,
-.products-grid {
-  .product-image-photo {
-    max-height: 150px;
-    min-height: 150px;
-    width: auto;
+.products-grid,
+.comparison {
+  .product-item-photo {
+    height: 150px;
+    .product-image-photo {
+      max-height: 100%;
+      max-width: 100%;
+      height: auto;
+      width: auto;
+    }
   }
 }
-
+.comparison {
+  .product-item-photo {
+    .product-image-photo {
+      margin: auto;
+      position: relative;
+    }
+    max-width: 150px;
+  }
+}
 
 /** view page **/
 .fotorama {

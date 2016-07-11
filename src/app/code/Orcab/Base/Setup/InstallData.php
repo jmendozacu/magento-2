@@ -235,8 +235,10 @@ class InstallData implements InstallDataInterface
         // Desactive stock
         $this->resourceConfig->saveConfig('cataloginventory/item_options/manage_stock', 0, 'default', 0);
 
-        // Hide checkout
+        // Hide module
         $this->resourceConfig->saveConfig('advanced/modules_disable_output/Magento_Checkout', 1, 'default', 0);
+        $this->resourceConfig->saveConfig('advanced/modules_disable_output/Magento_Newsletter', 1, 'default', 0);
+        $this->resourceConfig->saveConfig('advanced/modules_disable_output/Magento_Review', 1, 'default', 0);
 
         // Add category limit for menu
         $this->resourceConfig->saveConfig('sw_megamenu/general/max_level', 4, 'default', 0);
@@ -268,11 +270,14 @@ Réception marchandises :
 
         // Tax, price
         $this->resourceConfig->saveConfig('tax/defaults/country', 'FR', 'default', 0);
-        $this->resourceConfig->saveConfig('tax/display/type', 2, 'default', 0);
-        $this->resourceConfig->saveConfig('tax/display/shipping', 2, 'default', 0);
+        $this->resourceConfig->saveConfig('tax/display/type', 1, 'default', 0);
+        $this->resourceConfig->saveConfig('tax/display/shipping', 1, 'default', 0);
 
         // Design
         $this->resourceConfig->saveConfig('porto_settings/category/rating_star', 0, 'default', 0);
+        $this->resourceConfig->saveConfig('porto_settings/category/addtowishlist', 0, 'default', 0);
+        $this->resourceConfig->saveConfig('porto_settings/product/prev_next', 0, 'default', 0);
+        $this->resourceConfig->saveConfig('porto_settings/newsletter/enable', 0, 'default', 0);
         $this->resourceConfig->saveConfig('catalog/frontend/grid_per_page_values', '12,24,36', 'default', 0);
         $this->resourceConfig->saveConfig('catalog/frontend/grid_per_page', '12', 'default', 0);
         $this->resourceConfig->saveConfig('design/head/default_title', 'Orcab', 'default', 0);
@@ -341,5 +346,14 @@ Réception marchandises :
     </li>
 </ul>')
             ->save();
+
+        // Desactive functionnality
+        $this->resourceConfig->saveConfig('sendfriend/email/enabled', 0, 'default', 0);
+        $this->resourceConfig->saveConfig('newsletter/subscription/allow_guest_subscribe', 0, 'default', 0);
+        $this->resourceConfig->saveConfig('wishlist/general/active', 0, 'default', 0);
+        $this->resourceConfig->saveConfig('catalog/review/allow_guest', 0, 'default', 0);
+
+        // Varnish
+        $this->resourceConfig->saveConfig('system/full_page_cache/caching_application', 2, 'default', 0);
     }
 }
