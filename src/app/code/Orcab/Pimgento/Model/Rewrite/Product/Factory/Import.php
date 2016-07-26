@@ -4,14 +4,18 @@ namespace Orcab\Pimgento\Model\Rewrite\Product\Factory;
 
 use \Pimgento\Product\Model\Factory\Import as baseImport;
 use \Zend_Db_Expr as Expr;
+use \Orcab\Catalog\Rewrite\Model\Product\Link;
 
 class Import extends baseImport
 {
     protected $linkColumns = array(
-        1 => 'RELATION-products',
-        3 => 'SUBSTITUTION-products',
-        4 => 'UPSELL-products',
-        5 => 'X_SELL-products',
+        Link::LINK_TYPE_RELATED => 'RELATION-products',
+        Link::LINK_TYPE_UPSELL => 'UPSELL-products',
+        Link::LINK_TYPE_CROSSSELL => 'X_SELL-products',
+        Link::LINK_TYPE_PACK => 'PACK-products',
+        Link::LINK_TYPE_SUBSTITUTED => 'remplace_par-products',
+        Link::LINK_TYPE_SUBSTITUTE => 'remplacant_de-products',
+        Link::LINK_TYPE_SUBSTITUTION => 'SUBSTITUTION-products'
     );
 
     /**

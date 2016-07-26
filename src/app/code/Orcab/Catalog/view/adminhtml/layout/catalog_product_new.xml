@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product_tabs">
+            <action method="addTab">
+                <argument name="tabId" xsi:type="string">pack</argument>
+                <argument name="tab" xsi:type="array">
+                    <item name="label" translate="true" xsi:type="string">Pack Products</item>
+                    <item name="url" xsi:type="helper" helper="Orcab\Catalog\Helper\Url::getPackGridUrl"></item>
+                    <item name="class" xsi:type="string">ajax</item>
+                    <item name="group_code" xsi:type="string">advanced</item>
+                </argument>
+            </action>
+            <action method="addTab">
+                <argument name="tabId" xsi:type="string">substituted</argument>
+                <argument name="tab" xsi:type="array">
+                    <item name="label" translate="true" xsi:type="string">Substituted Products</item>
+                    <item name="url" xsi:type="helper" helper="Orcab\Catalog\Helper\Url::getSubstitutedGridUrl"></item>
+                    <item name="class" xsi:type="string">ajax</item>
+                    <item name="group_code" xsi:type="string">advanced</item>
+                </argument>
+            </action>
+            <action method="addTab">
+                <argument name="tabId" xsi:type="string">substitute</argument>
+                <argument name="tab" xsi:type="array">
+                    <item name="label" translate="true" xsi:type="string">Substitute Products</item>
+                    <item name="url" xsi:type="helper" helper="Orcab\Catalog\Helper\Url::getSubstituteGridUrl"></item>
+                    <item name="class" xsi:type="string">ajax</item>
+                    <item name="group_code" xsi:type="string">advanced</item>
+                </argument>
+            </action>
+            <action method="addTab">
+                <argument name="tabId" xsi:type="string">substitution</argument>
+                <argument name="tab" xsi:type="array">
+                    <item name="label" translate="true" xsi:type="string">Substitution Products</item>
+                    <item name="url" xsi:type="helper" helper="Orcab\Catalog\Helper\Url::getSubstitutionGridUrl"></item>
+                    <item name="class" xsi:type="string">ajax</item>
+                    <item name="group_code" xsi:type="string">advanced</item>
+                </argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

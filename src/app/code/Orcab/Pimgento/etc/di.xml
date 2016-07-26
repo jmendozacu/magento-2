@@ -9,4 +9,5 @@
     </type>
     <preference for="Pimgento\Category\Model\Factory\Import" type="Orcab\Pimgento\Model\Rewrite\Category\Factory\Import" />
     <preference for="Pimgento\Product\Model\Factory\Import" type="Orcab\Pimgento\Model\Rewrite\Product\Factory\Import" />
+    <preference for="Pimgento\Product\Observer\AddPimgentoImportObserver" type="Orcab\Pimgento\Observer\Rewrite\Product\AddPimgentoImportObserver" />
 </config>
