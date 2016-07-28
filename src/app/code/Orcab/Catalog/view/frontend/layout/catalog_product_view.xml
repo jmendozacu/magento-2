@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceContainer name="content.aside">
+        <block class="Orcab\Catalog\Block\Product\ProductList\Pack" name="catalog.product.pack" template="Magento_Catalog::product/list/items.phtml">
+            <arguments>
+                <argument name="type" xsi:type="string">pack</argument>
+            </arguments>
+        </block>
+        <block class="Orcab\Catalog\Block\Product\ProductList\Substituted" name="product.info.substituted" template="Magento_Catalog::product/list/items.phtml">
+            <arguments>
+                <argument name="type" xsi:type="string">substituted</argument>
+            </arguments>
+        </block>
+        <block class="Orcab\Catalog\Block\Product\ProductList\Substitute" name="product.info.substitute" template="Magento_Catalog::product/list/items.phtml">
+            <arguments>
+                <argument name="type" xsi:type="string">substitute</argument>
+            </arguments>
+        </block>
+        <block class="Orcab\Catalog\Block\Product\ProductList\Substitution" name="product.info.substitution" template="Magento_Catalog::product/list/items.phtml">
+            <arguments>
+                <argument name="type" xsi:type="string">substitution</argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+</page>
