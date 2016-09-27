@@ -20,18 +20,15 @@
   .page-header {
     .sw-megamenu.navigation {
       li.level0.fullwidth {
-        div.level0.submenu {
-          height: 650px;
-        }
         .submenu {
           .subchildmenu {
             li.level1 {
               position: static;
-              width:100%;
+              width: 25%;
+              float: none;
 
               & > a {
                 // level 1
-                width: 20%;
                 background-color: @color-orcab-gray;
                 margin: 1px;
 
@@ -49,14 +46,15 @@
                 // level 2
                 display: none;
                 position: absolute;
-                width: 78%;
+                width: 75%;
                 background-color: @color-white;
                 z-index: 10;
                 top: 0;
-                left: 21%;
+                left: 25%;
                 padding: 0;
                 height: 100%;
                 overflow-y: auto;
+                bottom: 0;
 
                 a {
                   background-color: @color-white;
@@ -73,17 +71,6 @@
                     // level 3
                     position: relative;
                     left: 0;
-                  }
-                }
-              }
-              &:first-child {
-                ul.subchildmenu {
-                  // first level 2
-                  display: block;
-                  li.level2 {
-                    ul.subchildmenu {
-                      display: block;
-                    }
                   }
                 }
               }
